@@ -23,7 +23,7 @@ GLint viewport[4];
 GLdouble modelview[16];
 GLdouble projection[16];
 
-void Clear(TextureLoading earthTex, TextureLoading moonTex) {
+void Draw(TextureLoading earthTex, TextureLoading moonTex) {
     //
     glClearColor(0.160f, 0.725f, 0.780f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -87,7 +87,7 @@ void Clear(TextureLoading earthTex, TextureLoading moonTex) {
 
 void SelectObject(GLdouble x, GLdouble y, TextureLoading earthTex, TextureLoading moonTex) {
     selectedMode = true;
-    Clear(earthTex, moonTex);
+    Draw(earthTex, moonTex);
     selectedMode = false;
     GLubyte rgb[3];
     glReadPixels(x, (float)viewport[3] - y, 1, 1, GL_RGB, GL_UNSIGNED_BYTE, rgb);
@@ -124,7 +124,7 @@ int main() {
 
     bool isGo = true;
     while (isGo) {
-        Clear(earthTex, moonTex);
+        Draw(earthTex, moonTex);
         sf::Event event;
         while (window.pollEvent(event)) {
             switch (event.type)
